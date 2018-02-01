@@ -77,11 +77,13 @@ dataBase.ref().on("child_added", function(snapshot) {
       // console.log(snapshot.val().age);
 
       // console.log(snapshot.val().comment);
-      //var total = months worked * snapshot.val().rate
+      var months = moment().diff(snapshot.val().startDate, 'months');
+
+      var total = months * snapshot.val().rate
 
       // Change the HTML to reflect
 
-      $("#newEmployee").append("<tr><td id='name'>" + snapshot.val().name + "</td><td id='role'>" + snapshot.val().role + "</td><td id='startDate'>" + snapshot.val().startDate + "</td><td id='monthsWorked'>0</td><td id='rate'>" + snapshot.val().rate + "</td><td id='total'>" + total + "</td></tr>"
+      $("#newEmployee").append("<tr><td id='name'>" + snapshot.val().name + "</td><td id='role'>" + snapshot.val().role + "</td><td id='startDate'>" + snapshot.val().startDate + "</td><td id='monthsWorked'>" + months + "</td><td id='rate'>" + snapshot.val().rate + "</td><td id='total'>" + total + "</td></tr>"
       	);
 
     // Handle the errors
