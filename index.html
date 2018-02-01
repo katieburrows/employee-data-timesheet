@@ -8,10 +8,12 @@
 <!-- 	  <link rel="stylesheet" type="text/css" href="css/style.css">-->	
 	</head>
 
-</html>
+
+<body>
 
 	<div class="container">	
 		
+		<!-- Header -->
 		<div class="jumbotron text-center">
 			<header>
 				<h1>Employee Data Management</h1>
@@ -19,6 +21,7 @@
 			</header>
 		</div>
 
+		<!-- Display -->
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				Current Employees
@@ -37,7 +40,7 @@
 							<th class="col">Total Billed ($)</th>
 						</tr>
 					</thead>
-					<tbody class="newEmployee">
+					<tbody id="newEmployee">
 
 					<!-- INSERT NEW DIV HERE: -->						
 					<!-- <tr>
@@ -54,6 +57,7 @@
 			</div>
 		</div>
 
+		<!-- Form -->
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				Add Employee
@@ -92,17 +96,14 @@
 				
 			</div>
 			
-
-
-
 		</div>
 
 
-
-
-
-
-
-
-
 	</div>
+
+</body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js.js"></script>
+
+</html>
