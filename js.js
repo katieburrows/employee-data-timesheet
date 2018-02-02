@@ -67,17 +67,23 @@ $("#submitButton").on("click", function() {
 
 $("table").on("click", "#deleteButton", function() {
 
+	//set var to the confirm question boolean
 	var x = confirm("Are you sure you want to delete this Employee?");
 
+	//if delete confirmed
 	if (x) {
 
+		//set the id equal to the data-id we set
 		var id = $(this).attr("data-id")
 
+		//in the databaselook for the child with the same id, and remove from database
 		dataBase.ref().child(id).remove();
 
+		//look for the clicked items tr parent (table row), and remove it
+		//parents looks multiple levels, parent() looks 1 level
 		$(this).parents("tr").remove();
 
-
+	//else, if delete is not confirmed
 	} else {
 		console.log("employee NOT deleted")
 	}
@@ -99,6 +105,7 @@ dataBase.ref().on("child_added", function(snapshot) {
       // console.log(snapshot.val().age);
 
       // console.log(snapshot.val().comment);
+      
       var months = moment().diff(snapshot.val().startDate, 'months');
 
       var total = months * snapshot.val().rate
