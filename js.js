@@ -44,7 +44,7 @@ $("#submitButton").on("click", function() {
 	roles = $("#roleInput").val().trim();
 	console.log(roles);
 
-	startDate = $("#startInput").val().trim();
+	startDate = moment($("#startInput").val().trim(), "YYYY-MM-DD").format("MM/DD/YYYY");
 	console.log(startDate);
 
 
@@ -105,7 +105,7 @@ dataBase.ref().on("child_added", function(snapshot) {
       // console.log(snapshot.val().age);
 
       // console.log(snapshot.val().comment);
-      
+
       var months = moment().diff(snapshot.val().startDate, 'months');
 
       var total = months * snapshot.val().rate
