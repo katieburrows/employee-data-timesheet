@@ -66,14 +66,17 @@ $("#submitButton").on("click", function() {
 });
 
 $("table").on("click", "#deleteButton", function() {
+
 	var x = confirm("Are you sure you want to delete this Employee?");
 
 	if (x) {
-		alert("working on delete function")
 
-		//add code for delete here 
-			//(delete member from the firebase)
-			//update html on page
+		var id = $(this).attr("data-id")
+
+		dataBase.ref().child(id).remove();
+
+		$(this).parents("tr").remove();
+
 
 	} else {
 		console.log("employee NOT deleted")
@@ -87,7 +90,7 @@ dataBase.ref().on("child_added", function(snapshot) {
 
       // Log everything that's coming out of snapshot
 
-      // console.log(snapshot.val());
+      console.log(snapshot.key);
 
       // console.log(snapshot.val().name);
 
@@ -102,7 +105,7 @@ dataBase.ref().on("child_added", function(snapshot) {
 
       // Change the HTML to reflect
 
-      $("#newEmployee").append("<tr><td id='name'>" + snapshot.val().name + "</td><td id='role'>" + snapshot.val().role + "</td><td id='startDate'>" + snapshot.val().startDate + "</td><td id='monthsWorked'>" + months + "</td><td id='rate'>" + snapshot.val().rate + "</td><td id='total'>" + total + "</td><td><button class='btn btn-danger' id='deleteButton'>-</button></td></tr>"
+      $("#newEmployee").append("<tr><td id='name'>" + snapshot.val().name + "</td><td id='role'>" + snapshot.val().role + "</td><td id='startDate'>" + snapshot.val().startDate + "</td><td id='monthsWorked'>" + months + "</td><td id='rate'>$" + snapshot.val().rate + "</td><td id='total'>$" + total + "</td><td><button class='btn btn-danger' id='deleteButton' data-id=" + snapshot.key + ">-</button></td></tr>"
       	);
 
     // Handle the errors
@@ -113,8 +116,4 @@ dataBase.ref().on("child_added", function(snapshot) {
 
     });
 
-	//set input field to variables
-	//save variables to firebase
-	//write variables to page (function that we can reuse, delete all and reqrite values from firebase)
-		//clear the table
-		//calculations for 2 fields
+	
